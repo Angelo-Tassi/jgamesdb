@@ -3,7 +3,8 @@ const sectionCenter = document.querySelector(".section-center");
 const ButtonContainer = document.querySelector(".btn-container");
 
 const request = fetch(
-  "https://api.rawg.io/api/games?key=73601ec88eab474386a6952aa8b34734&dates=2019-09-01,2019-09-30&platforms=18,1,"
+  "https://api.rawg.io/api/games?genres=arcade&key=73601ec88eab474386a6952aa8b34734"
+  // "https://api.rawg.io/api/games?key=73601ec88eab474386a6952aa8b34734&dates=2019-09-01,2019-09-30&platforms=18,1,"
 )
   .then(function (response) {
     return response.json();
@@ -11,8 +12,9 @@ const request = fetch(
   .then(function (data) {
     const gameArticles = data.results;
     let displayGames = gameArticles.map(function (games) {
-      const genre = games.genres.map(function (element) {
-        console.log(element.name);
+      console.log(games);
+      let genre = games.genres.map(function (element) {
+        return element.name;
       });
 
       return `<article class="menu-item">
@@ -27,12 +29,11 @@ const request = fetch(
           <div class='meta'><h3>Metacritic:<span class=rating>${
             games.metacritic
           }</span></h3>
-           <p class="item-text">
-              ${[genre]}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae, sint quam. Et reprehenderit fugiat nesciunt inventore
-              laboriosam excepturi! Quo, officia.
-            </p>
+          <div class="underline"></div>
+           <div class='genre'></div>
+           <div class='bold'>Genre</div>
+             <h5>${[genre]}</h5>
+              </div>
             </div>
     </div>
     </article>`;
