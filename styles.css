@@ -186,6 +186,14 @@ Menu
   margin-left: auto;
   margin-right: auto;
 }
+.rating {
+  width: 4rem;
+  height: 8rem;
+  padding-left: 0.3vw;
+  background: var(--clr-gold);
+  border-radius: 50%;
+  text-align: center;
+}
 .btn-container {
   margin-bottom: 4rem;
   display: flex;
@@ -218,8 +226,8 @@ Menu
 }
 .menu-item {
   display: grid;
-  gap: 1rem 2rem;
-  max-width: 25rem;
+  gap: 3rem 6rem;
+  max-width: 90rem;
 }
 .photo {
   object-fit: cover;
@@ -230,17 +238,22 @@ Menu
 .item-info header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 0.5px dotted var(--clr-grey-5);
+  border-bottom: 1px dotted var(--clr-grey-5);
 }
 .item-info h4 {
   margin-bottom: 0.5rem;
 }
 .price {
+  padding-top: 1.6vh;
+  text-align: center;
   color: var(--clr-gold);
 }
 .item-text {
   margin-bottom: 0;
   padding-top: 1rem;
+}
+.meta {
+  text-align: center;
 }
 
 @media screen and (min-width: 768px) {
