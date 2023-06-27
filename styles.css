@@ -137,7 +137,17 @@ p {
   }
 }
 /*  global classes */
-
+.hero {
+  font-family: "Commodore 64 Pixelized", sans-serif;
+  background: linear-gradient(#362879 20%, #6c5eb5d7),
+    url(../images/Nebulus.jpg);
+  background-size: auto;
+  background-position: top;
+  height: calc(100vh - 5rem);
+  color: #fff;
+  padding: 2rem 0;
+  line-height: 1.4rem;
+}
 .btn {
   text-transform: uppercase;
   background: transparent;
