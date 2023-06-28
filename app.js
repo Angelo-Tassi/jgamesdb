@@ -46,7 +46,7 @@ const requestPlatform = fetch(
     <h4>${games.name}</h4>
     </header>
     <h4 class="price">Released ${games.released}</h4>
-    <h6>${platforms}</h6>
+    <h6 class='meta'>${platforms}</h6>
          <div class="underline"></div>
          <br>
           <div class='meta'><h3>Metacritic:<span class=rating>${games.metacritic}</span></h3>
