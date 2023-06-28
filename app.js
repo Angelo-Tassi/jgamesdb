@@ -24,10 +24,9 @@ const requestPlatform = fetch(
         .then(function (data) {
           const gameArticles = data.results;
           let displayGames = gameArticles.map(function (games) {
-            if ((games.metacritic = 'null')) {
+            if (games.metacritic === null) {
               games.metacritic = 'N/A';
             }
-
             // if (games.metacritic.texcontent===('null')){
             //   games.metacritic.texcontent===('N/A')
             // }
