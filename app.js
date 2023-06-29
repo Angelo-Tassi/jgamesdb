@@ -3,13 +3,12 @@ const sectionCenter = document.querySelector(".section-center");
 const ButtonContainer = document.querySelector(".btn-container");
 const FilterButtons = document.querySelectorAll(".filter-btn");
 
-let currentPage = 1;
+let currentPage = 2;
 window.addEventListener("DOMContentLoaded", function () {
   displayGames();
   selectPage(currentPage);
 });
 function selectPage() {
-  let currentPage = 2;
   FilterButtons.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
       if (e.currentTarget.id === next) {
