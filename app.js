@@ -1,17 +1,36 @@
-'use strict';
-const sectionCenter = document.querySelector('.section-center');
-const ButtonContainer = document.querySelector('.btn-container');
-const FilterButtons = document.querySelectorAll('filter-btn');
-window.addEventListener('DOMContentLoaded', function () {
+"use strict";
+const sectionCenter = document.querySelector(".section-center");
+const ButtonContainer = document.querySelector(".btn-container");
+const FilterButtons = document.querySelectorAll(".filter-btn");
+
+let currentPage = 1;
+window.addEventListener("DOMContentLoaded", function () {
   displayGames();
+  selectPage(currentPage);
 });
-let currentPage = 5;
-console.log(currentPage);
-// function filterButtons()
+function selectPage() {
+  let currentPage = 2;
+  FilterButtons.forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      if (e.currentTarget.id === next) {
+        currentPage++;
+      }
+      if (e.currentTarget.id === previous) {
+        if (currentPage < 1) {
+          currentPage = 0;
+        }
+      } else {
+        currentPage--;
+      }
+    });
+    console.log(currentPage);
+  });
+}
+// // function filterButtons()
 
 // // Function to go to the next page
 // function nextPage() {
-//   currentPage++;
+//   var currentPage = currentPage++;
 //   displayGames();
 // }
 
@@ -22,10 +41,10 @@ console.log(currentPage);
 //     displayGames();
 //   }
 // }
-// const nextButton = document.getElementById('next');
-// const previousButton = document.getElementById('previous');
-// nextButton.addEventListener('click', nextPage);
-// previousButton.addEventListener('click', previousPage);
+// const nextButton = document.getElementById("next");
+// const previousButton = document.getElementById("previous");
+// nextButton.addEventListener("click", nextPage);
+// previousButton.addEventListener("click", previousPage);
 
 // Attach event listeners to next and previous buttons
 
@@ -42,7 +61,7 @@ function displayGames() {
       const gameArticles = data.results;
       let displayGames = gameArticles.map(function (games) {
         if (games.metacritic === null) {
-          games.metacritic = 'N/A';
+          games.metacritic = "N/A";
           // console.log(games);
         }
         let genre = games.genres.map(function (element) {
@@ -71,11 +90,10 @@ function displayGames() {
     </div>
     </article>`;
       });
-      displayGames = displayGames.join('');
-      sectionCenter.insertAdjacentHTML('beforeend', displayGames);
+      displayGames = displayGames.join("");
+      sectionCenter.insertAdjacentHTML("beforeend", displayGames);
     });
 }
-
 //   const requestPlatform = fetch(
 //     'https://api.rawg.io/api/platforms?key=73601ec88eab474386a6952aa8b34734'
 //   )
