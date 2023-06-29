@@ -11,18 +11,18 @@ window.addEventListener("DOMContentLoaded", function () {
 function selectPage() {
   FilterButtons.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
-      if (e.currentTarget.id === next) {
+      if (e.currentTarget.id === "next") {
         currentPage++;
       }
-      if (e.currentTarget.id === previous) {
+      if (e.currentTarget.id === "previous") {
         if (currentPage < 1) {
           currentPage = 0;
         }
       } else {
         currentPage--;
       }
+      console.log(currentPage);
     });
-    console.log(currentPage);
   });
 }
 // // function filterButtons()
