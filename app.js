@@ -24,11 +24,14 @@ function selectPage() {
         }
       }
       console.log(currentPage);
+      displayGames();
     });
   });
 }
 
 function displayGames() {
+  // clears section center to accomodate new page when the fetch is updated
+  sectionCenter.innerHTML = "";
   const request = fetch(
     `https://api.rawg.io/api/games?platforms=166&key=73601ec88eab474386a6952aa8b34734&page=${currentPage}`
   )
