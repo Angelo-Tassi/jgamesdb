@@ -1,14 +1,13 @@
-"use strict";
-const sectionCenter = document.querySelector(".section-center");
-const ButtonContainer = document.querySelector(".btn-container");
-const FilterButtons = document.querySelectorAll(".filter-btn");
-const browsingPage = document.querySelectorAll(".browsing");
-const dropdown = document.getElementById("dropdown-container");
-const platformDisplayName = document.querySelector(".platformName");
+'use strict';
+const sectionCenter = document.querySelector('.section-center');
+const ButtonContainer = document.querySelector('.btn-container');
+const FilterButtons = document.querySelectorAll('.filter-btn');
+const browsingPage = document.querySelectorAll('.browsing');
+const dropdown = document.getElementById('dropdown-container');
+let platformDisplayName = document.querySelector('.platformName');
 let currentPage = 1;
 let currentPlatform = 166;
-
-window.addEventListener("DOMContentLoaded", function () {
+window.addEventListener('DOMContentLoaded', function () {
   displayGames(currentPage);
   selectPage();
   displayPlaforms();
@@ -16,16 +15,16 @@ window.addEventListener("DOMContentLoaded", function () {
 
 function selectPage() {
   FilterButtons.forEach(function (btn) {
-    btn.addEventListener("click", function (e) {
+    btn.addEventListener('click', function (e) {
       console.log(btn);
-      if (e.currentTarget.id === "next") {
+      if (e.currentTarget.id === 'next') {
         if (currentPage >= 104) {
           currentPage = 1;
         } else {
           currentPage++;
         }
       }
-      if (e.currentTarget.id === "previous") {
+      if (e.currentTarget.id === 'previous') {
         if (currentPage <= 1) {
           currentPage = 104;
         } else {
@@ -46,7 +45,7 @@ function selectPage() {
 
 function displayGames() {
   // clears section center to accomodate new page when the fetch is updated
-  sectionCenter.innerHTML = "";
+  sectionCenter.innerHTML = '';
   const request = fetch(
     `https://api.rawg.io/api/games?platforms=${currentPlatform}&key=73601ec88eab474386a6952aa8b34734&page=${currentPage}`
   )
@@ -57,7 +56,7 @@ function displayGames() {
       const gameArticles = data.results;
       let displayGames = gameArticles.map(function (games) {
         if (games.metacritic === null) {
-          games.metacritic = "N/A";
+          games.metacritic = 'N/A';
           // console.log(games);
         }
         let genre = games.genres.map(function (element) {
@@ -86,8 +85,8 @@ function displayGames() {
     </div>
     </article>`;
       });
-      displayGames = displayGames.join("");
-      sectionCenter.insertAdjacentHTML("beforeend", displayGames);
+      displayGames = displayGames.join('');
+      sectionCenter.insertAdjacentHTML('beforeend', displayGames);
     });
 }
 
@@ -107,13 +106,21 @@ function displayPlaforms() {
         '<option value="" selected disabled> Select Platform </option>'
       );
       // Add an event listener to the dropdown to update the current platform
-      dropdown.addEventListener("change", function (e) {
+      dropdown.addEventListener('change', function (e) {
         currentPlatform = e.target.value;
         console.log(e.target);
-
+        platformDisplayName.textContent = `${
+          e.target.options[e.target.selectedIndex].text
+        } Games`;
         displayGames();
       });
       // platformDisplayName.textContent = `${item.name}`;
-      dropdown.innerHTML = dropdownOptions.join("");
+      dropdown.innerHTML = dropdownOptions.join('');
     });
+  // function titlePlatform(platformDisplayName) {
+  //   dropdown.addEventListener('change', function (element) {
+  //     element.textContent = `${item.name} Games`;
+  //     console.log(element.textContent);
+  //   });
+  // }
 }
