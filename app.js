@@ -5,8 +5,8 @@ const FilterButtons = document.querySelectorAll(".filter-btn");
 let currentPage = 10;
 
 window.addEventListener("DOMContentLoaded", function () {
-  displayGames();
-  selectPage(currentPage);
+  displayGames(currentPage);
+  selectPage();
 });
 
 function selectPage() {
