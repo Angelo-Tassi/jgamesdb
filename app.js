@@ -4,12 +4,14 @@ const ButtonContainer = document.querySelector(".btn-container");
 const FilterButtons = document.querySelectorAll(".filter-btn");
 const browsingPage = document.querySelectorAll(".browsing");
 const dropdown = document.getElementById("dropdown-container");
+const platformDisplayName = document.querySelector(".platformName");
 let currentPage = 1;
 let currentPlatform = 166;
 
 window.addEventListener("DOMContentLoaded", function () {
   displayGames(currentPage);
   selectPage();
+  displayPlaforms();
 });
 
 function selectPage() {
@@ -89,16 +91,29 @@ function displayGames() {
     });
 }
 
-// function displayPlaforms() {
-const request = fetch(
-  `https://api.rawg.io/api/platforms?key=73601ec88eab474386a6952aa8b34734`
-)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    const platform = data.results;
-    let displayPlaform = platform.map(function (item) {
-      console.log(item.id + item.name);
+function displayPlaforms() {
+  const request = fetch(
+    `https://api.rawg.io/api/platforms?key=73601ec88eab474386a6952aa8b34734`
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      const platforms = data.results;
+      let dropdownOptions = platforms.map(function (item) {
+        return `<option value="${item.id}">${item.name}</option>`;
+      });
+      dropdownOptions.unshift(
+        '<option value="" selected disabled> Select Platform </option>'
+      );
+      // Add an event listener to the dropdown to update the current platform
+      dropdown.addEventListener("change", function (e) {
+        currentPlatform = e.target.value;
+        console.log(e.target);
+
+        displayGames();
+      });
+      // platformDisplayName.textContent = `${item.name}`;
+      dropdown.innerHTML = dropdownOptions.join("");
     });
-  });
+}
