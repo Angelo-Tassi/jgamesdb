@@ -138,7 +138,6 @@ p {
 }
 /*  global classes */
 .hero {
-  font-family: "Commodore 64 Pixelized", sans-serif;
   background: linear-gradient(#362879 20%, #6c5eb5d7),
     url(../images/Nebulus.jpg);
   background-size: cover;
@@ -279,7 +278,13 @@ Menu
   padding-bottom: 1.5vh;
   color: #49a6e9;
 }
-
+#margin-bottom {
+  margin-top: -5vh;
+  margin-bottom: 9vh;
+  padding-top: -9vh;
+  padding-bottom: 2vh;
+  text-align: center;
+}
 @media screen and (min-width: 768px) {
   .menu-item {
     grid-template-columns: 225px 1fr;

@@ -2,27 +2,38 @@
 const sectionCenter = document.querySelector(".section-center");
 const ButtonContainer = document.querySelector(".btn-container");
 const FilterButtons = document.querySelectorAll(".filter-btn");
-let currentPage = 10;
+const browsingPage = document.querySelectorAll(".browsing");
+let currentPage = 1;
 
 window.addEventListener("DOMContentLoaded", function () {
   displayGames(currentPage);
   selectPage();
 });
 
-function selectPage() {
+function selectPage(changeDisplayedPage) {
   FilterButtons.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
       console.log(btn);
       if (e.currentTarget.id === "next") {
-        currentPage++;
+        if (currentPage >= 104) {
+          currentPage = 1;
+        } else {
+          currentPage++;
+        }
       }
       if (e.currentTarget.id === "previous") {
         if (currentPage <= 1) {
-          currentPage = 0;
+          currentPage = 104;
         } else {
           currentPage--;
         }
       }
+      browsingPage.forEach(function (element) {
+        element.textContent = `Currently Browsing Page ${currentPage} `;
+      });
+
+      console.log(browsingPage);
+
       console.log(currentPage);
       displayGames();
     });
