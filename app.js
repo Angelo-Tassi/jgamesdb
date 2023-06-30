@@ -3,14 +3,16 @@ const sectionCenter = document.querySelector(".section-center");
 const ButtonContainer = document.querySelector(".btn-container");
 const FilterButtons = document.querySelectorAll(".filter-btn");
 const browsingPage = document.querySelectorAll(".browsing");
+const dropdown = document.getElementById("dropdown-container");
 let currentPage = 1;
+let currentPlatform = 166;
 
 window.addEventListener("DOMContentLoaded", function () {
   displayGames(currentPage);
   selectPage();
 });
 
-function selectPage(changeDisplayedPage) {
+function selectPage() {
   FilterButtons.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
       console.log(btn);
@@ -29,7 +31,7 @@ function selectPage(changeDisplayedPage) {
         }
       }
       browsingPage.forEach(function (element) {
-        element.textContent = `Currently Browsing Page ${currentPage} `;
+        element.textContent = `Currently Browsing Page ${currentPage}`;
       });
 
       console.log(browsingPage);
@@ -44,7 +46,7 @@ function displayGames() {
   // clears section center to accomodate new page when the fetch is updated
   sectionCenter.innerHTML = "";
   const request = fetch(
-    `https://api.rawg.io/api/games?platforms=166&key=73601ec88eab474386a6952aa8b34734&page=${currentPage}`
+    `https://api.rawg.io/api/games?platforms=${currentPlatform}&key=73601ec88eab474386a6952aa8b34734&page=${currentPage}`
   )
     .then(function (response) {
       return response.json();
@@ -86,3 +88,17 @@ function displayGames() {
       sectionCenter.insertAdjacentHTML("beforeend", displayGames);
     });
 }
+
+// function displayPlaforms() {
+const request = fetch(
+  `https://api.rawg.io/api/platforms?key=73601ec88eab474386a6952aa8b34734`
+)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    const platform = data.results;
+    let displayPlaform = platform.map(function (item) {
+      console.log(item.id + item.name);
+    });
+  });
