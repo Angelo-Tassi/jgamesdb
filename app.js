@@ -12,15 +12,16 @@ window.addEventListener("DOMContentLoaded", function () {
 function selectPage() {
   FilterButtons.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
+      console.log(btn);
       if (e.currentTarget.id === "next") {
         currentPage++;
       }
       if (e.currentTarget.id === "previous") {
-        if (currentPage < 1) {
+        if (currentPage <= 1) {
           currentPage = 0;
+        } else {
+          currentPage--;
         }
-      } else {
-        currentPage--;
       }
       console.log(currentPage);
     });
