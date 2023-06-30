@@ -105,7 +105,7 @@ function displayPlaforms() {
       dropdownOptions.unshift(
         '<option value="" selected disabled> Select Platform </option>'
       );
-      // Add an event listener to the dropdown to update the current platform
+      // Add an event listener to the dropdown to update the current platform and page title
       dropdown.addEventListener('change', function (e) {
         currentPlatform = e.target.value;
         console.log(e.target);
@@ -114,13 +114,6 @@ function displayPlaforms() {
         } Games`;
         displayGames();
       });
-      // platformDisplayName.textContent = `${item.name}`;
       dropdown.innerHTML = dropdownOptions.join('');
     });
-  // function titlePlatform(platformDisplayName) {
-  //   dropdown.addEventListener('change', function (element) {
-  //     element.textContent = `${item.name} Games`;
-  //     console.log(element.textContent);
-  //   });
-  // }
 }
